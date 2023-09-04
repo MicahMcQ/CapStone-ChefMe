@@ -1,20 +1,20 @@
 import React from 'react'
 
-function login() {
+function Login() {
   return (
 <div className='loginbox'>
     <h3>Please log in</h3>
     <div id='email_input'>
-        <label for="email">Enter email:</label>
-        <input type="email" id="email" name="email"/>
+        {/* <label htmlFor="email">Enter email:</label> */}
+        <input type="email" id="email" name="email" placeholder='Email or Username'/>
     </div>
     <div id="password_input">
-    <label for="password">Enter password</label>
-    <input type="text" id="password" name="password"/>     
+    {/* <label htmlFor="password">Enter password</label> */}
+    <input type="text" id="password" name="password" placeholder='Password'/>     
     </div>
 <button type="submit">Log in</button>
 </div>
   )
 }
 
-export default login
+export default Login
