@@ -1,13 +1,113 @@
+/* Reset some default styles */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the header */
+  .App-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  /* Style the navigation links */
+  .App-header a {
+    color: #61dafb;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  /* Style the active link */
+  .App-header a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style the main content container */
+  .App {
+    text-align: center;
+  }
+  
+  /* Add styles for the different pages */
+  .page-container {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  /* Style specific elements within pages */
+  .page-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .page-container p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Style the sign-up form (customize as needed) */
+  .sign-up-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  /* Style form inputs */
+  .sign-up-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Style form button */
+  .sign-up-form button {
+    background-color: #61dafb;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  /* Style the recipes list (customize as needed) */
+  .recipe-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recipe-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style links within recipe items */
+  .recipe-item a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  /* Hover effect for links */
+  .recipe-item a:hover {
+    text-decoration: underline;
+  }
+  

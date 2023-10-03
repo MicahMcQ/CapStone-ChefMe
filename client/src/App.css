@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* Style the header */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #384f7c;
   color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.App-link {
+.App-header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+/* Style the navigation links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
   color: #61dafb;
+  text-decoration: none;
+  font-size: 18px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Style the main content container */
+.App-content {
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* Style the sign-up form (customize as needed) */
+.sign-up-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Style form inputs */
+.sign-up-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Style form button */
+.sign-up-form button {
+  background-color: #61dafb;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Style the recipes list (customize as needed) */
+.recipe-list {
+  list-style: none;
+  padding: 0;
+}
+
+.recipe-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style links within recipe items */
+.recipe-item a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+/* Hover effect for links */
+.recipe-item a:hover {
+  text-decoration: underline;
 }
