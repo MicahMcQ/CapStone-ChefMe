@@ -42,4 +42,18 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+app.get('/recipes', async (req, res) => {
+  const client = await connectToDatabase(); // Assuming connectToDatabase returns a database client
+  try {
+    const result = await client.query('SELECT * FROM recipes');
+    res.json(result.rows); // Sending the query result as JSON response
+  } catch (err) {
+    console.error('Error executing SQL query:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  } finally {
+    client.release(); // Release the database client back to the pool
+  }
+});
+
 module.exports = app

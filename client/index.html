@@ -1,0 +1,152 @@
+<!DOCTYPE=HTML>
+<html lang="en" ng-app="awesomeapp">
+<head>
+  <meta charset="utf-8">
+  <title>ChefMe</title>
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!--animate.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!--Font-awesome.css -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  <!--Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Philosopher|Comfortaa" rel="stylesheet">
+
+  <!--custom stylesheets-->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/search.css">
+  <!--<link rel="stylesheet" href="css/spinner.css">-->
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/rotate.css">
+  <link rel="stylesheet" href="css/switch.css">
+  <link rel="stylesheet" href="css/sidenav.css">
+  <link rel="stylesheet" href="css/top.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <!--external js libraries-->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!--Google Analytics-->
+  <script src="js/googleanalytics.js"></script>
+
+  <!--application scripts-->
+  <script src="js/app.js"></script>
+  <script src="js/controllers/list.js"></script>
+  <script src="js/page.js"></script>
+
+</head>
+
+<body ng-controller="listController as lstctrl">
+  <!-- Loader that goes over everything -->
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <!-- side nav
+  <div id="mySidenav" class="sidenav">
+    <a onclick="closeNav()" class="closebtn" style="cursor: pointer;">&times;</a> -->
+
+    <!--filters-->
+    <!-- <div class="filters">
+
+      <div class="tips">
+        <p>Dietary concerns? The Fridge's got you.</p>
+      </div>
+
+      <div style="padding-right: 5%; display: inline-block;" ng-repeat="diet in lstctrl.dietArray">
+       <div class="switch">
+         <label>
+           <input type="checkbox" ng-model="diet.on" ng-change="lstctrl.checkChange()">
+           <div class="slider round"></div>
+         </label>
+       </div>
+       <span class="label">{{diet.name}}</span>
+     </div>
+
+     <hr>
+
+     <span class="label">Calories/serving: </span>
+     <input type="range" min="0" max="90000" step="0.1" value="0">
+
+    </div> end of filters -->
+
+  </div> <!--end of sidenav -->
+
+  <!--main container-->
+  <div class="container-fluid" id="main">
+
+    <!--scroll to top button-->
+    <a href="javascript:rTT();" id="return-to-top"><i class="icon-chevron-up"></i></a>
+
+    <!--open nav-->
+    <!-- <div>
+      <h1 onclick="openNav()" class="rotate" style="font-family: 'Philosopher'; font-size: 40px; position: fixed; cursor: pointer;">Filters &#9776;</h1>
+    </div> -->
+
+    <!--inner container-->
+    <div class="inner container-fluid">
+      <!--page title-->
+      <div class="page-title">
+        <h1 style="font-family: 'Comfortaa', cursive; font-weight: bold; color: #312c27; font-size: 60px;">ChefMe</h1>
+      </div>
+
+      <!--sticky notes-->
+      <div class="bulletin">
+          <p class="note">This magical Chef provides you with recipes using what you have. </p>
+          <p class="note">Feed it with ingredients, cooking ideas, and much more!* </p>
+      </div>
+
+      <!--Search controls-->
+      <div class="searchctrl">
+        <div class="bar" id="wrap">
+          <form ng-submit="lstctrl.search()">
+            <input type="text"
+                   id="search"
+                   placeholder="Ready, set, go">
+                   <input id="search_submit" type="submit">
+          </form>
+        </div>
+      </div> <!--end of search bar-->
+
+      <div class="searchctrl">
+        <p id="src-ins">(Separate ingredients with commas)</p>
+      </div>
+
+    </div> <!--end of inner container-->
+
+    <!--search message-->
+    <div id="msg-top" class="src-msg"></div>
+
+    <!--results-->
+    <div class="results">
+      <div class="yitiao" ng-repeat="hit in lstctrl.data | filter:lstctrl.filtered">
+        <div class="col pic">
+          <img ng-src="{{hit.recipe.image}}" class="img-rounded img-responsive" style="width: 100px; height: auto; float: left; margin: 2%;">
+        </div>
+        <div class="col text">
+          <h4>{{hit.recipe.label}}</h4>
+          <h5><strong>Calories/serving: </strong>
+            {{(hit.recipe.calories)/(hit.recipe.yield) | number: 1}}
+          </h5>
+          <h5><strong>Recipe: </strong>
+            <a href="{{hit.recipe.url}}" target="_blank">Click me!</a>
+          </h5>
+          <h5><strong>Health Labels: </strong> <span ng-repeat="healthLabel in hit.recipe.healthLabels">{{healthLabel + " | "}}</span> </h5>
+          <h5><strong>Diets: </strong> <span ng-repeat="dietLabel in hit.recipe.dietLabels">{{dietLabel + " | "}}</span> </h5>
+          <h5><strong>Source: </strong> {{hit.recipe.source}}</h5>
+        </div>
+      </div>
+    </div> <!--end of results-->
+
+    <div id="msg-bottom" class="src-msg"></div>
+
+  <!--footer-->
+
+
+</div> <!--end of body container/angular controller-->
+</body>
+</html>

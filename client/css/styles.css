@@ -1,0 +1,92 @@
+body {
+  margin-top: 5%;
+}
+
+.header {
+  border-right-width: 1px;
+  border: solid #93897d;
+  border-bottom: none;
+  margin-left: 5%;
+  margin-right: 5%;
+  top: 0;
+}
+
+.inner {
+  border-width: 0 2px;
+  border: solid #93897d;
+  border-bottom-width: 1em;
+  padding: 5%;
+  overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+/*search message*/
+.src-msg {
+  text-align: center;
+  font-family: "Comfortaa";
+}
+
+/*search controls*/
+.searchctrl {
+  padding: 5%;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.filters {
+  color: #3b2d32;
+  text-align: center;
+}
+
+.filters .label {
+  font-family: 'Philosopher';
+  font-size: 1.2em;
+  vertical-align: middle;
+  color: inherit;
+}
+
+#src-ins {
+  font-family: "Comfortaa";
+  float: right;
+  font-size: 1.3em;
+}
+
+/*bulletin*/
+.bulletin {
+  margin-top: 5%;
+}
+
+.note {
+  font-family: 'Comfortaa';
+  padding: 5px;
+  font-size: 1.3em;
+  color: #312c27;
+}
+
+/* tips (show on data load) */
+.tips {
+  padding: 2%;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Philosopher';
+}
+
+/* results */
+.results {
+  padding: 5%;
+  width: 90%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.yitiao {
+  margin-bottom: 3%;
+  color: #3b2d32;
+  border-width: 0 2px;
+  border: solid #93897d;
+  border-bottom-width: 0.5em;
+}

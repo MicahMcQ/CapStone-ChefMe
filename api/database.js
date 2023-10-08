@@ -6,10 +6,62 @@ const axios = require('axios'); // Import the axios library
 const dbConfig = {
   user: 'breeziestfish7',
   host: 'localhost', // or your database host
-  database: 'chefme',
+  database: 'postgres',
   password: 'micah7iscool',
   port: 5432, // or your database port
 };
+
+
+// async function createAndLoadDatabase() {
+//   const client = new Client(dbConfig);
+
+//   try {
+//     // Connect to the PostgreSQL server
+//     await client.connect();
+//     console.log('Connected to the PostgreSQL server');
+
+//     // Drop the existing 'chefme' database if it exists
+//     await client.query('DROP DATABASE IF EXISTS chefme');
+//     console.log('Dropped existing database: chefme');
+
+//     // Create a new 'chefme' database
+//     await client.query('CREATE DATABASE chefme');
+//     console.log('Created new database: chefme');
+
+//     // Disconnect from the PostgreSQL server
+//     await client.end();
+
+//     // Now that we have created the new database, let's connect to it
+//     const chefmeConfig = { ...dbConfig, database: 'chefme' };
+//     const chefmeClient = new Client(chefmeConfig);
+
+//     // Connect to the 'chefme' database
+//     await chefmeClient.connect();
+//     console.log('Connected to the chefme database');
+
+//     // Create the 'recipes' table
+//     const createTableQuery = `
+//       CREATE TABLE IF NOT EXISTS recipes (
+//         recipes_id SERIAL PRIMARY KEY,
+//         title VARCHAR(100)
+//       )
+//     `;
+//     await chefmeClient.query(createTableQuery);
+//     console.log('Table created successfully');
+
+//     // Load data into the 'recipes' table (you can use your loadTable function here)
+    
+//     // Disconnect from the 'chefme' database
+//     await chefmeClient.end();
+
+//     console.log('Database setup completed');
+//   } catch (error) {
+//     console.error('An error occurred:', error);
+//   }
+// }
+
+// // Call the createAndLoadDatabase function to set up the database
+// createAndLoadDatabase();
 
 async function init(client) {
   await dropTable("recipes");
@@ -46,14 +98,14 @@ async function connectToDatabase() {
   }
 }
 
-async function createTable(table_name) {
+async function createTable(recipes) {
   const client = await connectToDatabase(); // Connect to the database here
 
   try {
     // SQL statement to create a table
     const createTableQuery = `
       CREATE TABLE IF NOT EXISTS recipes (
-        recipes_id SERIAL PRIMARY KEY,
+        idMeal SERIAL PRIMARY KEY,
         title VARCHAR(100)
       )
     `;
@@ -70,11 +122,11 @@ async function createTable(table_name) {
   }
 }
 
-async function dropTable(table_name) {
+async function dropTable(recieps) {
   const client = await connectToDatabase(); // Connect to the database here
 
   try {
-    await client.query('DROP TABLE IF EXISTS ' + table_name);
+    await client.query('DROP TABLE IF EXISTS ' + 'recipes');
 
     console.log('Table dropped successfully');
   } catch (error) {
