@@ -1,7 +1,6 @@
-<h1>Spoiling Fridge</h1>
+<h1>Chefme</h1>
 
 
-<img src="screenshot.png">
 
 <p>
   It is your best companion when your fridge is hoarded and you are out of cooking ideas.

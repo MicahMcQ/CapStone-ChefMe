@@ -6,77 +6,32 @@ const axios = require('axios'); // Import the axios library
 const dbConfig = {
   user: 'breeziestfish7',
   host: 'localhost', // or your database host
-  database: 'postgres',
+  database: 'chefme',
   password: 'micah7iscool',
   port: 5432, // or your database port
 };
 
-
-// async function createAndLoadDatabase() {
-//   const client = new Client(dbConfig);
-
-//   try {
-//     // Connect to the PostgreSQL server
-//     await client.connect();
-//     console.log('Connected to the PostgreSQL server');
-
-//     // Drop the existing 'chefme' database if it exists
-//     await client.query('DROP DATABASE IF EXISTS chefme');
-//     console.log('Dropped existing database: chefme');
-
-//     // Create a new 'chefme' database
-//     await client.query('CREATE DATABASE chefme');
-//     console.log('Created new database: chefme');
-
-//     // Disconnect from the PostgreSQL server
-//     await client.end();
-
-//     // Now that we have created the new database, let's connect to it
-//     const chefmeConfig = { ...dbConfig, database: 'chefme' };
-//     const chefmeClient = new Client(chefmeConfig);
-
-//     // Connect to the 'chefme' database
-//     await chefmeClient.connect();
-//     console.log('Connected to the chefme database');
-
-//     // Create the 'recipes' table
-//     const createTableQuery = `
-//       CREATE TABLE IF NOT EXISTS recipes (
-//         recipes_id SERIAL PRIMARY KEY,
-//         title VARCHAR(100)
-//       )
-//     `;
-//     await chefmeClient.query(createTableQuery);
-//     console.log('Table created successfully');
-
-//     // Load data into the 'recipes' table (you can use your loadTable function here)
-    
-//     // Disconnect from the 'chefme' database
-//     await chefmeClient.end();
-
-//     console.log('Database setup completed');
-//   } catch (error) {
-//     console.error('An error occurred:', error);
-//   }
-// }
-
-// // Call the createAndLoadDatabase function to set up the database
-// createAndLoadDatabase();
-
 async function init(client) {
-  await dropTable("recipes");
-  await createTable("recipes");
-  await loadTable(client);
+  await dropTable("recipes", client);
+  await createTable("recipes", client);
+  await loadTable("recipes", client);
 }
 
-async function loadTable(client) {
+async function loadTable(tableName, client) {
   try {
     for (let i = 0; i < 4; i++) {
       const response = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php');
       const mealData = response.data.meals[0];
-
       // Insert data into the database
-      await client.query('INSERT INTO recipes (title) VALUES ($1)', [mealData.strMeal]);
+      const insertQuery = `INSERT INTO ${tableName} (name, category, area, image) VALUES ($1, $2, $3, $4)`;
+      
+      await client.query(insertQuery, [
+        mealData.strMeal,
+        mealData.strCategory,
+        mealData.strArea,
+        mealData.strMealThumb
+      ]);
+
       console.log(`Inserted: ${mealData.strMeal}`);
     }
   } catch (error) {
@@ -84,9 +39,10 @@ async function loadTable(client) {
   }
 }
 
+
 // Function to establish a database connection
-async function connectToDatabase() {
-  const client = new Client(dbConfig);
+async function connectToDatabase(client) {
+  // const client = new Client(dbConfig);
   try {
     // Connect to the database
     await client.connect();
@@ -98,18 +54,18 @@ async function connectToDatabase() {
   }
 }
 
-async function createTable(recipes) {
-  const client = await connectToDatabase(); // Connect to the database here
-
+async function createTable(tableName, client) {
   try {
     // SQL statement to create a table
     const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS recipes (
+      CREATE TABLE IF NOT EXISTS ${tableName} (
         idMeal SERIAL PRIMARY KEY,
-        title VARCHAR(100)
+        name VARCHAR(100),
+        category VARCHAR(100),
+        area VARCHAR(100),
+        image VARCHAR(100)
       )
     `;
-
     // Execute the SQL query
     await client.query(createTableQuery);
 
@@ -118,28 +74,30 @@ async function createTable(recipes) {
     console.error('Error creating table:', error);
   } finally {
     // Close the database connection
-    await client.end();
   }
 }
 
-async function dropTable(recieps) {
-  const client = await connectToDatabase(); // Connect to the database here
-
+async function dropTable(tableName, client) {
   try {
-    await client.query('DROP TABLE IF EXISTS ' + 'recipes');
-
+    await client.query('DROP TABLE IF EXISTS ' + `${tableName}`);
     console.log('Table dropped successfully');
   } catch (error) {
     console.error('Error dropping table:', error);
   } finally {
     // Close the database connection
-    await client.end();
   }
 }
 
-// Call the init function to start the process
-connectToDatabase()
-  .then(init)
-  .catch((error) => {
-    console.error('An error occurred:', error);
-  });
+
+// // Call the init function to start the process
+// connectToDatabase()
+//   .then(init)
+//   .catch((error) => {
+//     console.error('An error occurred:', error);
+//   });
+
+module.exports = {
+  init,
+  connectToDatabase,
+  dbConfig
+}

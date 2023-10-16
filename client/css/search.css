@@ -1,8 +1,24 @@
 #wrap {
   display: inline-block;
   height: 60px;
-  float: right;
   position: relative;
+}
+
+.btn-primary {
+  font-size: 16px; /* You can adjust the font size as needed */
+}
+
+.btn-primary {
+  background-color: #ccc; /* Use your desired shade of gray */
+  border-color: #ccc; /* This will also affect the button border */
+  color: #333; /* You can adjust the text color as needed */
+  margin:0 auto;
+  width: 100%;
+}
+
+.btn-primary:hover, .btn-primary:active {
+  background-color: #aaa; /* Adjust the color on hover/active state */
+  border-color: #aaa; /* You can choose a slightly darker gray for the border */
 }
 
 input[type="text"] {

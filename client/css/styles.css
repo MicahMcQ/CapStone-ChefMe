@@ -20,6 +20,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  position: relative; /* Set the container to a relative position */
 }
 
 /*search message*/
