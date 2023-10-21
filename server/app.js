@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require("cors");
 const { Client } = require('pg');
 var corsOptions = {
-  origin: 'http://localhost:5501',
+  origin: 'http://localhost:3000',
 }
 
 const { connectToDatabase, init, dbConfig } = require('./database.js');
@@ -32,6 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/login', (req, res) => {
+  res.send({
+    token:'test123'
+  });
+});
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -59,6 +64,24 @@ app.get('/recipes', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   } finally {
   //   client.release(); // Release the database client back to the pool
+  }
+});
+
+app.get("/recipes", async (req, res) => {
+  const searchQuery = req.query.q; // Get the search term from the query parameter 'q'
+  
+  try {
+    await client.connect();
+    // Create a SQL query to search for recipes containing the search term
+    const sql = `
+      SELECT * FROM recipes
+      WHERE name ILIKE $1;`;
+
+    const result = await client.query(sql, [`%${searchQuery}%`]);
+    res.json(result.rows); // Sending the query result as JSON response
+  } catch (err) {
+    console.error("Error executing SQL query:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

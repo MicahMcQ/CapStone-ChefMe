@@ -19,12 +19,12 @@ async function init(client) {
 
 async function loadTable(tableName, client) {
   try {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 100; i++) {
       const response = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php');
       const mealData = response.data.meals[0];
       // Insert data into the database
       const insertQuery = `INSERT INTO ${tableName} (name, category, area, image) VALUES ($1, $2, $3, $4)`;
-      
+
       await client.query(insertQuery, [
         mealData.strMeal,
         mealData.strCategory,
