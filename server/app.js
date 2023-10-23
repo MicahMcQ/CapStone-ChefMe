@@ -67,23 +67,21 @@ app.get('/recipes', async (req, res) => {
   }
 });
 
-app.get("/recipes", async (req, res) => {
-  const searchQuery = req.query.q; // Get the search term from the query parameter 'q'
+// app.get("/recipes", async (req, res) => {
+//   const searchQuery = req.query.q; // Get the search term from the query parameter 'q'
   
-  try {
-    await client.connect();
-    // Create a SQL query to search for recipes containing the search term
-    const sql = `
-      SELECT * FROM recipes
-      WHERE name ILIKE $1;`;
+//   try {
+//     await client.connect();
+//     // Create a SQL query to search for recipes containing the search term
+//     const sql = `SELECT * FROM recipes WHERE name LIKE ${req.body.value}`;
 
-    const result = await client.query(sql, [`%${searchQuery}%`]);
-    res.json(result.rows); // Sending the query result as JSON response
-  } catch (err) {
-    console.error("Error executing SQL query:", err);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+//     const result = await client.query(sql, [`%${searchQuery}%`]);
+//     res.json(result.rows); // Sending the query result as JSON response
+//   } catch (err) {
+//     console.error("Error executing SQL query:", err);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 app.post('/recipes', async (req, res) => {
   console.log(req.body.name);

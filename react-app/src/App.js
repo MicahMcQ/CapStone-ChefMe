@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Preferences from './components/Preferences/Preferences';
 import useToken from './components/App/useToken';
 import FindRecipe from './components/FindeRecipe/FindRecipe';
+import NavBar from './components/Nav/NavBar';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="wrapper">
       <h1 id='title'>ChefMe</h1>
+      <NavBar />
       <hr></hr>
       <BrowserRouter>
         <Switch>

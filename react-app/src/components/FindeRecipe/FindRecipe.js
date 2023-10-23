@@ -4,10 +4,12 @@ import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
 
 function FindRecipe() {
-
+  
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isListVisible, setIsListVisible] = useState(false);
+  const [buttonText, setButtonText] = useState("Show List");
 
   useEffect(() => {
     async function fetchRecipes() {
@@ -25,25 +27,31 @@ function FindRecipe() {
     fetchRecipes();
   }, []);
 
-  return(
-    <body>
-<div>
-  <SearchBar />
-<h2>Recipe List</h2>
-{loading ? (
-  <p>Loading...</p>
-) : error ? (
-  <p>{error}</p>
-) : (
-  <ul>
-    {recipes.map((recipe, index) => (
-      <li key={index}>{recipe.name}</li>
-    ))}
-  </ul>
-)}
-</div>
-</body>
-  )
+  const toggleListVisibility = () => {
+    setIsListVisible(!isListVisible);
+    setButtonText(isListVisible ? "Show List" : "Hide List"); // Change the button text
+  };
+
+  return (
+    <div>
+      <SearchBar />
+      <h2>Recipe List</h2>
+      <button id="toggleButton" onClick={toggleListVisibility}>
+        {buttonText}
+      </button>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : isListVisible && (
+        <ul id="collapsibleList">
+          {recipes.map((recipe, index) => (
+            <li key={index}>{recipe.name}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
 export default FindRecipe
