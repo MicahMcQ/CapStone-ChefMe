@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import './SearchBar.css';
-import axios from "axios";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-function SearchBar() {
+function SearchBar({ setSearchResults }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const history = useHistory();
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/recipes?q=${searchQuery}`);
-      // Ensure that your API endpoint handles the query parameter 'q' correctly
+      const response = await axios.get(`http://localhost:9000/search?q=${searchQuery}`);
+      const searchResults = response.data;
 
-      // Assuming your API returns data in JSON format
-      setSearchResults(response.data);
+      // Update the searchResults state in the App component
+      setSearchResults(searchResults);
+
+      // Navigate to the search results route
+      history.push('/search-results');
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+  }
+
 
   return (
     <div className="Card">

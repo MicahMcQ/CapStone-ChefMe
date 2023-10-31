@@ -71,7 +71,7 @@ app.get("/search", async (req, res) => {
   const searchQuery = req.body.q; // Get the search term from the query parameter 'q'
   
   try {
-    const sql = `SELECT * FROM recipes WHERE name LIKE %${req.body.value}%`;
+    const sql = `SELECT * FROM recipes WHERE name LIKE $1`;
     const result = await client.query(sql, [`%${searchQuery}%`]);
     res.json(result.rows); // Sending the query result as JSON response
   } catch (err) {

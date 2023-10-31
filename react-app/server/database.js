@@ -23,13 +23,14 @@ async function loadTable(tableName, client) {
       const response = await axios.get('https://www.themealdb.com/api/json/v1/1/random.php');
       const mealData = response.data.meals[0];
       // Insert data into the database
-      const insertQuery = `INSERT INTO ${tableName} (name, category, area, image) VALUES ($1, $2, $3, $4)`;
+      const insertQuery = `INSERT INTO ${tableName} (name, category, area, image, source) VALUES ($1, $2, $3, $4, $5)`;
 
       await client.query(insertQuery, [
         mealData.strMeal,
         mealData.strCategory,
         mealData.strArea,
-        mealData.strMealThumb
+        mealData.strMealThumb,
+        mealData.strSource
       ]);
 
       console.log(`Inserted: ${mealData.strMeal}`);
@@ -63,7 +64,8 @@ async function createTable(tableName, client) {
         name VARCHAR(100),
         category VARCHAR(100),
         area VARCHAR(100),
-        image VARCHAR(100)
+        image VARCHAR(100),
+        source VARCHAR(500)
       )
     `;
     // Execute the SQL query

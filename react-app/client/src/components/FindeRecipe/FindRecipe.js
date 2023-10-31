@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './FindRecipe.css';
 import axios from "axios";
-import SearchBar from "../SearchBar/SearchBar";
+
 
 function FindRecipe() {
-  
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -29,29 +28,35 @@ function FindRecipe() {
 
   const toggleListVisibility = () => {
     setIsListVisible(!isListVisible);
-    setButtonText(isListVisible ? "Show List" : "Hide List"); // Change the button text
+    setButtonText(isListVisible ? "Show All" : "Hide All");
   };
 
   return (
     <div>
-      <SearchBar />
       <h2>Recipe List</h2>
       <button id="toggleButton" onClick={toggleListVisibility}>
         {buttonText}
       </button>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : isListVisible && (
-        <ul id="collapsibleList">
-          {recipes.map((recipe, index) => (
-            <li key={index}>{recipe.name}</li>
-          ))}
-        </ul>
-      )}
+      <div id="image" className={isListVisible ? "visible" : "hidden"}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <div>
+            {recipes.map((recipe, index) => (
+              <div key={index} className="recipeThumbnail">
+                <a href={recipe.source} target="_blank" rel="noopener noreferrer">
+                  <img src={recipe.image} alt={recipe.name} />
+                </a>
+                <p>{recipe.name}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-export default FindRecipe
+export default FindRecipe;
