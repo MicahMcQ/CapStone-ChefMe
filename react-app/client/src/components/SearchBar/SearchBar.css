@@ -1,0 +1,18 @@
+.recipeThumbnail {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  max-width: 250px;
+}
+
+.recipeThumbnail img {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+#image.visible {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
