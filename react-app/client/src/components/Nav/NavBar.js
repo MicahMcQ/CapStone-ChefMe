@@ -7,7 +7,8 @@ function NavBar() {
       <ul>
             <li class="nav"><a href="/Dashboard">Home</a></li>
             <li class="nav"><a href="/search">Search</a></li>
-           
+            <li class="nav"><a href="/about">About Us</a></li>
+  
       </ul>
     </nav>
     </div>

@@ -11,6 +11,8 @@ import NavBar from './components/Nav/NavBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import axios from 'axios';
 import SearchResults from './components/searchResults/SearchResults';
+import About from './components/About/About';
+import MaintenanceBanner from './components/Maintenance/Banner';
 function App() {
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,6 +44,9 @@ function App() {
       <hr></hr>
       <BrowserRouter>
       <Switch>
+        <Route path="/about">
+<About />
+        </Route>
         <Route path="/preferences">
           <Preferences />
         </Route>
@@ -56,6 +61,7 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
+    <MaintenanceBanner />
     </div>
   );
 }
