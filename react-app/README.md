@@ -15,8 +15,8 @@ Make sure you have the following software installed:
 
 ### Installing
 
-We are going to install an test the server first. To make sure it's connected with your local database.
-Once we've downloaded it we are going to close it and run a concurrent script from the "Client" folder that allows us to start the Front and Backend with one command.
+We are going to "npm install on both the "client and "server" folders. Lets start with the server first. To make sure it's connected with your local database.
+Once we've downloaded it we are going to close it and run a concurrent script from the "client" folder that allows us to start the Front and Backend with one command.
 
 Clone the repository to your local machine:
 
