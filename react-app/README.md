@@ -15,17 +15,29 @@ Make sure you have the following software installed:
 
 ### Installing
 
+We are going to install an test the server first. To make sure it's connected with your local database.
+Once we've downloaded it we are going to close it and run a concurrent script from the "Client" folder that allows us to start the Front and Backend with one command.
+
 Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/MicahMcQ/CapStone-ChefMe.git
 cd Capstone-ChefMe
 ```
-Install the project dependencies:
-```bash
+## Backend
 
+Let's go over to the "Server" folder:
+
+```bash
+cd server
+```
+
+Install Dependencies:
+
+```bash
 npm install
 ```
+
 Configure PostgreSQL Connection
 
 Create a PostgreSQL database and configure the connection in your project. Open the config.js file (or create it if it doesn't exist) and add the following:
@@ -87,19 +99,19 @@ Visit <http://localhost:3000> in your browser.
 
 ### Frontend
 
--Language: JavaScript
--Framework: React
--Runtime Environment: Node.js
+- Language: JavaScript
+- Framework: React
+- Runtime Environment: Node.js
 
 Description:
 The frontend of our application is developed using JavaScript, with React as the chosen framework for building modern and responsive user interfaces. Node.js serves as the runtime environment, facilitating server-side rendering and other backend-related functionalities for our frontend.
 
 ### Backend
 
--Language: JavaScript 
--Framework: Express
--Runtime Environment: Node.js
--Databbase: PostgreSQL
+- Language: JavaScript 
+- Framework: Express
+- Runtime Environment: Node.js
+- Databbase: PostgreSQL
 
 Description:
 Our backend is built using JavaScript, utilizing the Express framework to create a robust and scalable server. Node.js provides the runtime environment for our backend operations. We have integrated PostgreSQL as our database, leveraging its power and reliability for data storage and retrieval.
