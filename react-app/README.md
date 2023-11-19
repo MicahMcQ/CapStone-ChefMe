@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# ChefMe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Recipe searching app, capstone for SpringBoard (2023)
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+These instructions will help you set up the project on your local machine.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Make sure you have the following software installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
-### `npm test`
+### Installing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository to your local machine:
 
-### `npm run build`
+```bash
+git clone https://github.com/MicahMcQ/CapStone-ChefMe.git
+cd Capstone-ChefMe
+```
+Install the project dependencies:
+```bash
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm install
+```
+Configure PostgreSQL Connection
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a PostgreSQL database and configure the connection in your project. Open the config.js file (or create it if it doesn't exist) and add the following:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
 
-### `npm run eject`
+// config.js
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+module.exports = {
+  dbConfig: {
+    user: 'your_username',
+    host: 'localhost', // or your database host
+    database: 'chefme',
+    password: 'your_password',
+    port: 5432, // or your database port
+  },
+};
+```
+Replace 'your_username', 'your_database_name', 'your_password' with your actual PostgreSQL credentials.
+Running the App
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+testing the server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm start
+```
+Visit <http://localhost:9000/recipes> in your browser.
+Loading Recipe Data
 
-## Learn More
+The project includes a script to initialize the database with recipe data.
+This script connects to the PostgreSQL database, creates a table, and loads recipe data from an external API.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Once youve confirmed the server is working we can close the server: 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+"control C"
 
-### Code Splitting
+And now its time to switch to the frontend and run the exucute the full app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd ../client
+```
+Install client dependencies:
 
-### Analyzing the Bundle Size
+```bash
+npm install
+npm install concurrently
+```
+Concurrently is a npm package is used for running multiple commands in one. Allowing us to run the front and back end simultaneously.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+after all is said and done run the final command:
 
-### Making a Progressive Web App
+```bash
+npm start
+```
+Visit <http://localhost:3000> in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Important information
 
-### Advanced Configuration
+### Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+-Language: JavaScript
+-Framework: React
+-Runtime Environment: Node.js
 
-### Deployment
+Description:
+The frontend of our application is developed using JavaScript, with React as the chosen framework for building modern and responsive user interfaces. Node.js serves as the runtime environment, facilitating server-side rendering and other backend-related functionalities for our frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Backend
 
-### `npm run build` fails to minify
+-Language: JavaScript 
+-Framework: Express
+-Runtime Environment: Node.js
+-Databbase: PostgreSQL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Description:
+Our backend is built using JavaScript, utilizing the Express framework to create a robust and scalable server. Node.js provides the runtime environment for our backend operations. We have integrated PostgreSQL as our database, leveraging its power and reliability for data storage and retrieval.
+
+####Contributing
+
+If you'd like to contribute to ChefMe, please fork the repository and create a pull request. Feel free to open issues for bug reports or feature requests.
